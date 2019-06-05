@@ -147,10 +147,6 @@
 		3FEA3C6E21F8D0E300A07D82 /* UnboxableRawType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA3BDD21F8D0E300A07D82 /* UnboxableRawType.swift */; };
 		3FEA3C6F21F8D0E300A07D82 /* UnboxableRawType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA3BDD21F8D0E300A07D82 /* UnboxableRawType.swift */; };
 		3FEA3C7021F8D0E300A07D82 /* UnboxableRawType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA3BDD21F8D0E300A07D82 /* UnboxableRawType.swift */; };
-		3FEA3C7121F8D0E300A07D82 /* UnboxableEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA3BDE21F8D0E300A07D82 /* UnboxableEnum.swift */; };
-		3FEA3C7221F8D0E300A07D82 /* UnboxableEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA3BDE21F8D0E300A07D82 /* UnboxableEnum.swift */; };
-		3FEA3C7321F8D0E300A07D82 /* UnboxableEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA3BDE21F8D0E300A07D82 /* UnboxableEnum.swift */; };
-		3FEA3C7421F8D0E300A07D82 /* UnboxableEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA3BDE21F8D0E300A07D82 /* UnboxableEnum.swift */; };
 		3FEA3C7521F8D0E300A07D82 /* Bool+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA3BDF21F8D0E300A07D82 /* Bool+Unbox.swift */; };
 		3FEA3C7621F8D0E300A07D82 /* Bool+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA3BDF21F8D0E300A07D82 /* Bool+Unbox.swift */; };
 		3FEA3C7721F8D0E300A07D82 /* Bool+Unbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA3BDF21F8D0E300A07D82 /* Bool+Unbox.swift */; };
@@ -243,7 +239,6 @@
 		3FEA3BDB21F8D0E300A07D82 /* NSDictionary+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDictionary+Unbox.swift"; sourceTree = "<group>"; };
 		3FEA3BDC21F8D0E300A07D82 /* UnboxPathNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxPathNode.swift; sourceTree = "<group>"; };
 		3FEA3BDD21F8D0E300A07D82 /* UnboxableRawType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxableRawType.swift; sourceTree = "<group>"; };
-		3FEA3BDE21F8D0E300A07D82 /* UnboxableEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxableEnum.swift; sourceTree = "<group>"; };
 		3FEA3BDF21F8D0E300A07D82 /* Bool+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+Unbox.swift"; sourceTree = "<group>"; };
 		3FEA3BE021F8D0E300A07D82 /* UnboxError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnboxError.swift; sourceTree = "<group>"; };
 		3FEA3BE121F8D0E300A07D82 /* Int+Unbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Unbox.swift"; sourceTree = "<group>"; };
@@ -356,7 +351,6 @@
 				3FEA3BDB21F8D0E300A07D82 /* NSDictionary+Unbox.swift */,
 				3FEA3BDC21F8D0E300A07D82 /* UnboxPathNode.swift */,
 				3FEA3BDD21F8D0E300A07D82 /* UnboxableRawType.swift */,
-				3FEA3BDE21F8D0E300A07D82 /* UnboxableEnum.swift */,
 				3FEA3BDF21F8D0E300A07D82 /* Bool+Unbox.swift */,
 				3FEA3BE021F8D0E300A07D82 /* UnboxError.swift */,
 				3FEA3BE121F8D0E300A07D82 /* Int+Unbox.swift */,
@@ -746,7 +740,6 @@
 				3FEA3C3521F8D0E300A07D82 /* UnboxableWithContext.swift in Sources */,
 				3FEA3C4121F8D0E300A07D82 /* Float+Unbox.swift in Sources */,
 				3FEA3C3D21F8D0E300A07D82 /* URL+Unbox.swift in Sources */,
-				3FEA3C7121F8D0E300A07D82 /* UnboxableEnum.swift in Sources */,
 				3FEA3C6521F8D0E300A07D82 /* NSDictionary+Unbox.swift in Sources */,
 				3FEA3C6D21F8D0E300A07D82 /* UnboxableRawType.swift in Sources */,
 				3FEA3BE521F8D0E300A07D82 /* Int64+Unbox.swift in Sources */,
@@ -803,7 +796,6 @@
 				3FEA3C3721F8D0E300A07D82 /* UnboxableWithContext.swift in Sources */,
 				3FEA3C4321F8D0E300A07D82 /* Float+Unbox.swift in Sources */,
 				3FEA3C3F21F8D0E300A07D82 /* URL+Unbox.swift in Sources */,
-				3FEA3C7321F8D0E300A07D82 /* UnboxableEnum.swift in Sources */,
 				3FEA3C6721F8D0E300A07D82 /* NSDictionary+Unbox.swift in Sources */,
 				3FEA3C6F21F8D0E300A07D82 /* UnboxableRawType.swift in Sources */,
 				3FEA3BE721F8D0E300A07D82 /* Int64+Unbox.swift in Sources */,
@@ -852,7 +844,6 @@
 				3FEA3C3821F8D0E300A07D82 /* UnboxableWithContext.swift in Sources */,
 				3FEA3C4421F8D0E300A07D82 /* Float+Unbox.swift in Sources */,
 				3FEA3C4021F8D0E300A07D82 /* URL+Unbox.swift in Sources */,
-				3FEA3C7421F8D0E300A07D82 /* UnboxableEnum.swift in Sources */,
 				3FEA3C6821F8D0E300A07D82 /* NSDictionary+Unbox.swift in Sources */,
 				3FEA3C7021F8D0E300A07D82 /* UnboxableRawType.swift in Sources */,
 				3FEA3BE821F8D0E300A07D82 /* Int64+Unbox.swift in Sources */,
@@ -901,7 +892,6 @@
 				3FEA3C3621F8D0E300A07D82 /* UnboxableWithContext.swift in Sources */,
 				3FEA3C4221F8D0E300A07D82 /* Float+Unbox.swift in Sources */,
 				3FEA3C3E21F8D0E300A07D82 /* URL+Unbox.swift in Sources */,
-				3FEA3C7221F8D0E300A07D82 /* UnboxableEnum.swift in Sources */,
 				3FEA3C6621F8D0E300A07D82 /* NSDictionary+Unbox.swift in Sources */,
 				3FEA3C6E21F8D0E300A07D82 /* UnboxableRawType.swift in Sources */,
 				3FEA3BE621F8D0E300A07D82 /* Int64+Unbox.swift in Sources */,

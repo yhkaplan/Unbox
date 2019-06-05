@@ -289,35 +289,7 @@ class UnboxTests: XCTestCase {
             XCTFail("\(error)")
         }
     }
-    
-    func testArrayOfEnums() {
-        struct Model: Unboxable {
-            let optionalA: [UnboxTestEnum]?
-            let optionalB: [UnboxTestEnum]?
-            let required: [UnboxTestEnum]
-            
-            init(unboxer: Unboxer) throws {
-                self.optionalA = try? unboxer.unbox(key: "optionalA")
-                self.optionalB = try? unboxer.unbox(key: "optionalB")
-                self.required = try unboxer.unbox(key: "required")
-            }
-        }
-        
-        let dictionary: UnboxableDictionary = [
-            "optionalA" : [0, 1],
-            "required" : [1, 0]
-        ]
-        
-        do {
-            let unboxed: Model = try unbox(dictionary: dictionary)
-            XCTAssertEqual(unboxed.optionalA!, [.First, .Second])
-            XCTAssertNil(unboxed.optionalB)
-            XCTAssertEqual(unboxed.required, [.Second, .First])
-        } catch {
-            XCTFail("\(error)")
-        }
-    }
-    
+
     func testRequiredDateFormatting() {
         struct Model: Unboxable {
             let date: Date
@@ -1778,12 +1750,10 @@ private func UnboxTestDictionaryWithAllRequiredKeysWithValidValues(nested: Bool)
         UnboxTestMock.requiredDoubleKey : Double(1.5) as AnyObject,
         UnboxTestMock.requiredFloatKey : Float(3.14) as AnyObject,
         UnboxTestMock.requiredCGFloatKey : 0.72,
-        UnboxTestMock.requiredEnumKey : 1,
         UnboxTestMock.requiredStringKey :  "hello",
         UnboxTestMock.requiredURLKey : "http://www.google.com",
         UnboxTestMock.requiredDecimalKey: Decimal(13.95) as AnyObject,
         UnboxTestMock.requiredArrayKey : ["unbox", "is", "pretty", "cool", "right?"],
-        UnboxTestMock.requiredEnumArrayKey : [0, 1],
     ]
     
     if !nested {
@@ -1796,11 +1766,6 @@ private func UnboxTestDictionaryWithAllRequiredKeysWithValidValues(nested: Bool)
 }
 
 // MARK: - Mocks
-
-private enum UnboxTestEnum: Int, UnboxableEnum {
-    case First
-    case Second
-}
 
 private struct UnboxTestDictionaryKey: UnboxableKey, Hashable {
     let key: String
@@ -1829,8 +1794,6 @@ private class UnboxTestBaseMock: Unboxable {
     static let optionalFloatKey = "optionalFloat"
     static let requiredCGFloatKey = "requiredCGFloat"
     static let optionalCGFloatKey = "optionalCGFloat"
-    static let requiredEnumKey = "requiredEnum"
-    static let optionalEnumKey = "optionalEnum"
     static let requiredStringKey = "requiredString"
     static let optionalStringKey = "optionalString"
     static let requiredURLKey = "requiredURL"
@@ -1839,8 +1802,6 @@ private class UnboxTestBaseMock: Unboxable {
     static let optionalDecimalKey = "optionalDecimal"
     static let requiredArrayKey = "requiredArray"
     static let optionalArrayKey = "optionalArray"
-    static let requiredEnumArrayKey = "requiredEnumArray"
-    static let optionalEnumArrayKey = "optionalEnumArray"
     
     let requiredBool: Bool
     let optionalBool: Bool?
@@ -1852,8 +1813,6 @@ private class UnboxTestBaseMock: Unboxable {
     let optionalFloat: Float?
     let requiredCGFloat: CGFloat
     let optionalCGFloat: CGFloat?
-    let requiredEnum: UnboxTestEnum
-    let optionalEnum: UnboxTestEnum?
     let requiredString: String
     let optionalString: String?
     let requiredURL: URL
@@ -1862,8 +1821,6 @@ private class UnboxTestBaseMock: Unboxable {
     let optionalDecimal: Decimal?
     let requiredArray: [String]
     let optionalArray: [String]?
-    let requiredEnumArray: [UnboxTestEnum]
-    let optionalEnumArray: [UnboxTestEnum]?
     
     required init(unboxer: Unboxer) throws {
         self.requiredBool = try unboxer.unbox(key: UnboxTestBaseMock.requiredBoolKey)
@@ -1876,8 +1833,6 @@ private class UnboxTestBaseMock: Unboxable {
         self.optionalFloat = try? unboxer.unbox(key: UnboxTestBaseMock.optionalFloatKey)
         self.requiredCGFloat = try unboxer.unbox(key: UnboxTestBaseMock.requiredCGFloatKey)
         self.optionalCGFloat = try? unboxer.unbox(key: UnboxTestBaseMock.optionalCGFloatKey)
-        self.requiredEnum = try unboxer.unbox(key: UnboxTestBaseMock.requiredEnumKey)
-        self.optionalEnum = try? unboxer.unbox(key: UnboxTestBaseMock.optionalEnumKey)
         self.requiredString = try unboxer.unbox(key: UnboxTestBaseMock.requiredStringKey)
         self.optionalString = try? unboxer.unbox(key: UnboxTestBaseMock.optionalStringKey)
         self.requiredURL = try unboxer.unbox(key: UnboxTestBaseMock.requiredURLKey)
@@ -1886,8 +1841,6 @@ private class UnboxTestBaseMock: Unboxable {
         self.optionalDecimal = try? unboxer.unbox(key: UnboxTestBaseMock.optionalDecimalKey)
         self.requiredArray = try unboxer.unbox(key: UnboxTestBaseMock.requiredArrayKey)
         self.optionalArray = try? unboxer.unbox(key: UnboxTestBaseMock.optionalArrayKey)
-        self.requiredEnumArray = try unboxer.unbox(key: UnboxTestBaseMock.requiredEnumArrayKey)
-        self.optionalEnumArray = try? unboxer.unbox(key: UnboxTestBaseMock.optionalEnumArrayKey)
     }
     
     func verifyAgainstDictionary(dictionary: UnboxableDictionary) {
@@ -1919,10 +1872,6 @@ private class UnboxTestBaseMock: Unboxable {
                 verificationOutcome = self.verifyTransformableValue(value: self.requiredCGFloat, againstDictionaryValue: value)
             case UnboxTestBaseMock.optionalCGFloatKey:
                 verificationOutcome = self.verifyTransformableValue(value: self.optionalCGFloat, againstDictionaryValue: value)
-            case UnboxTestBaseMock.requiredEnumKey:
-                verificationOutcome = self.verifyEnumPropertyValue(value: self.requiredEnum, againstDictionaryValue: value)
-            case UnboxTestBaseMock.optionalEnumKey:
-                verificationOutcome = self.verifyEnumPropertyValue(value: self.optionalEnum, againstDictionaryValue: value)
             case UnboxTestBaseMock.requiredStringKey:
                 verificationOutcome = self.verifyPropertyValue(value: self.requiredString, againstDictionaryValue: value)
             case UnboxTestBaseMock.optionalStringKey:
@@ -1935,10 +1884,6 @@ private class UnboxTestBaseMock: Unboxable {
                 verificationOutcome = self.verifyArrayPropertyValue(value: self.requiredArray, againstDictionaryValue: value)
             case UnboxTestBaseMock.optionalArrayKey:
                 verificationOutcome = self.verifyArrayPropertyValue(value: self.optionalArray, againstDictionaryValue: value)
-            case UnboxTestBaseMock.requiredEnumArrayKey:
-                verificationOutcome = self.verifyEnumArrayPropertyValue(value: self.requiredEnumArray, againstDictionaryValue: value)
-            case UnboxTestBaseMock.optionalEnumArrayKey:
-                verificationOutcome = self.verifyEnumArrayPropertyValue(value: self.optionalEnumArray, againstDictionaryValue: value)
             default:
                 verificationOutcome = true
             }
@@ -1951,16 +1896,6 @@ private class UnboxTestBaseMock: Unboxable {
         if let propertyValue = value {
             if let typedDictionaryValue = dictionaryValue as? T {
                 return propertyValue == typedDictionaryValue
-            }
-        }
-        
-        return false
-    }
-    
-    func verifyEnumPropertyValue<T: UnboxableEnum>(value: T?, againstDictionaryValue dictionaryValue: Any?) -> Bool where T: Equatable {
-        if let rawValue = dictionaryValue as? T.RawValue {
-            if let enumValue = T(rawValue: rawValue) {
-                return value == enumValue
             }
         }
         
@@ -1984,26 +1919,7 @@ private class UnboxTestBaseMock: Unboxable {
         
         return false
     }
-    
-    func verifyEnumArrayPropertyValue<T: UnboxableEnum>(value: [T]?, againstDictionaryValue dictionaryValue: Any?) -> Bool where T: Equatable {
-        if let propertyValue = value {
-            if let dictionaryArrayValue = dictionaryValue as? [T.RawValue] {
-                for i in 0..<dictionaryArrayValue.count {
-                    guard let enumValue = T(rawValue: dictionaryArrayValue[i]) else {
-                        return false
-                    }
-                    
-                    guard case enumValue = propertyValue[i] else {
-                        return false
-                    }
-                }
-                
-                return true
-            }
-        }
-        
-        return false
-    }
+
 }
 
 private class UnboxTestMock: UnboxTestBaseMock {
